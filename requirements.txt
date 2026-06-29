@@ -1,0 +1,6 @@
+# auxilab-mcp-finance-recon — production dependencies
+
+mcp>=1.0.0
+pandas>=2.0.0
+numpy>=1.24.0
+rapidfuzz>=3.0.0
