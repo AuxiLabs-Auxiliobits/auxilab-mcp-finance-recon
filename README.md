@@ -183,7 +183,8 @@ auxilab-mcp-finance-recon/
 │   ├── generate_test_data.py  # Synthetic CSV generator
 │   └── sample_data/           # Generated CSVs (gitignored)
 ├── tests/
-│   └── test_tools.py
+│   ├── test_tools.py
+│   └── test_reconciliation.py # Unit tests — BankMatcher & GLReconciler
 ├── demo.py                    # Full 5-step demo runner
 ├── pyproject.toml
 └── README.md
@@ -200,6 +201,33 @@ auxilab-mcp-finance-recon/
 | Fuzzy description matching | `rapidfuzz` (falls back to `difflib`) |
 | CSV parsing | `pandas.read_csv` |
 | Break classification | Rules-based (regex) — no LLM required |
+
+---
+
+## Testing
+
+Unit tests exercise `BankMatcher` and `GLReconciler` directly (no MCP layer, no server startup required).
+
+```bash
+pip install -e ".[dev]"   # pulls in pytest, rapidfuzz
+pytest tests/test_reconciliation.py -v
+```
+
+| Test | Type | What it checks |
+|---|---|---|
+| `test_bank_matcher_happy_path_clean_match` | Happy path | Same-day, same-amount transactions match HIGH confidence, 100% match rate |
+| `test_gl_reconciler_happy_path_new_and_removed_entries` | Happy path | One shared entry, one new, one removed — counts land correctly |
+| `test_bank_matcher_date_tolerance_boundary` | Edge case | Entry exactly 3 days out (tolerance limit) matches; 4 days out doesn't |
+| `test_gl_reconciler_detects_reversal` | Edge case | Same reference, sign-flipped amount in period B flagged as a reversal |
+| `test_bank_matcher_raises_on_missing_amount_column` | Error condition | Malformed CSV (missing `amount` column) raises `KeyError` instead of silently corrupting output |
+
+All 5 pass against the current implementation.
+
+---
+
+## Known Limitations / Scope Boundaries
+
+- **`GLReconciler` reversal vs. common-entry overlap:** a reference that appears in both period extracts is always counted in `common_entries` (reference-only match), even when it's also caught by `_find_reversals` (sign-flipped amount). This means a reversed entry shows up in *both* lists rather than being reclassified out of `common_entries`. Not a bug in the tested path — the reversal is still correctly detected — but worth knowing before reading the raw counts.
 
 ---
 
