@@ -1,0 +1,13 @@
+account_name,owner,status,due_date
+Cash - Main Account,Priya Sharma,complete,2024-11-26
+Accounts Receivable,Rajan Mehta,complete,2024-11-27
+Prepaid Expenses,Anita Roy,complete,2024-11-27
+Fixed Assets,Deepak Nair,complete,2024-11-28
+Accounts Payable,Neha Gupta,in progress,2024-11-29
+Accrued Liabilities,Suresh Kumar,in progress,2024-11-29
+Intercompany - Entity B,Kavya Pillai,in progress,2024-11-29
+Revenue Recognition,Arjun Singh,not started,2024-11-30
+Tax Payable,Meera Iyer,not started,2024-11-30
+Bank Reconciliation - USD,Priya Sharma,overdue,2024-11-25
+Bank Reconciliation - EUR,Rajan Mehta,overdue,2024-11-26
+Payroll Clearing,Sunita Rao,overdue,2024-11-24
