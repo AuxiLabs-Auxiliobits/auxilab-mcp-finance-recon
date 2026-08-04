@@ -249,3 +249,15 @@ All 5 pass against the current implementation.
 ## License
 
 MIT · Built for the Auxiliobits Hackathon — Financial Reconciliation Pillar
+
+
+---
+
+## Built By
+
+| Name | GitHub |
+|------|--------|
+| Aditya Jaiswal | [@Aditya-j101](https://github.com/Aditya-j101) |
+| Sanchit Aggarwal | [@SanchitAggarwal001](https://github.com/SanchitAggarwal001) |
+
+Built during the **AuxiLab Founding Hackathon** by [Auxiliobits Technologies](https://auxiliobits.com) · [AuxiLab Catalogue](https://auxiliobits.com/auxilab)
